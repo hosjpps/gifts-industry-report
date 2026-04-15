@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gifts Industry — Стратегия продвижения</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --gold: #C8A84E;
+    --gold-light: #E8D48B;
+    --gold-dark: #A07B28;
+    --black: #0A0A0A;
+    --black-light: #1A1A1A;
+    --black-card: #141414;
+    --gray: #888;
+    --gray-light: #B0B0B0;
+    --white: #F5F0E8;
+    --green: #4CAF50;
+    --red: #E74C3C;
+    --blue: #3498DB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(ellipse at center, #1a1510 0%, var(--black) 70%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(200,168,78,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(200,168,78,0.04) 0%, transparent 50%);
+    animation: shimmer 20s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-5%, 3%); }
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: 18px;
+    color: var(--gray-light);
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-date {
+    margin-top: 40px;
+    color: var(--gray);
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Sections */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title span { color: var(--gold); }
+  .section-subtitle {
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 60px auto;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .stats-grid .stat-card:nth-child(5),
+  .stats-grid .stat-card:nth-child(6) {
+    grid-column: span 2;
+  }
+  .stat-card {
+    background: var(--black-card);
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .stat-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    color: var(--gray-light);
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .stat-card.highlight {
+    border-color: var(--gold-dark);
+    background: linear-gradient(135deg, #1a1608 0%, var(--black-card) 100%);
+  }
+
+  /* Tables */
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 24px 0;
+    border-radius: 12px;
+    border: 1px solid #222;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  th {
+    background: #1a1a1a;
+    color: var(--gold);
+    font-weight: 600;
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    white-space: nowrap;
+  }
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #1a1a1a;
+    color: var(--gray-light);
+  }
+  tr:hover td { background: #111; }
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge-gold { background: rgba(200,168,78,0.15); color: var(--gold); }
+  .badge-green { background: rgba(76,175,80,0.15); color: var(--green); }
+  .badge-red { background: rgba(231,76,60,0.15); color: var(--red); }
+  .badge-blue { background: rgba(52,152,219,0.15); color: var(--blue); }
+
+  /* Charts */
+  .chart-container {
+    background: var(--black-card);
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 32px;
+    margin: 24px 0;
+  }
+  .chart-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+  .chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 24px;
+  }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .card {
+    background: var(--black-card);
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 32px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .card:hover {
+    border-color: var(--gold-dark);
+    transform: translateY(-2px);
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .card p { color: var(--gray-light); font-size: 14px; }
+  .card .card-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(200,168,78,0.1);
+    color: var(--gold);
+    border-radius: 20px;
+    font-size: 11px;
+    margin-bottom: 16px;
+  }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 40px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), var(--gold-dark), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding: 24px;
+    background: var(--black-card);
+    border: 1px solid #222;
+    border-radius: 12px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -33px;
+    top: 28px;
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: 3px solid var(--black);
+  }
+  .timeline-month {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .timeline-tasks { list-style: none; }
+  .timeline-tasks li {
+    padding: 6px 0;
+    color: var(--gray-light);
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .timeline-tasks li::before {
+    content: '→';
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* Advantages */
+  .advantages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .advantage {
+    padding: 24px;
+    background: var(--black-card);
+    border: 1px solid #222;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .advantage .icon {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+  }
+  .advantage .icon svg {
+    width: 40px;
+    height: 40px;
+  }
+  .advantage h4 {
+    color: var(--gold);
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .advantage p { color: var(--gray-light); font-size: 13px; }
+
+  /* Product photo cards */
+  .product-card-photo {
+    background: var(--black-card);
+    border: 1px solid #222;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .product-card-photo:hover {
+    border-color: var(--gold-dark);
+    transform: translateY(-4px);
+  }
+  .product-card-photo img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+  }
+  .product-card-info {
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .product-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .product-card-stats {
+    font-size: 14px;
+    color: var(--gray-light);
+  }
+  .product-star {
+    color: var(--gold);
+    font-size: 15px;
+  }
+
+  /* Photo placeholders */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .photo-placeholder {
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #1a1608, #111);
+    border: 2px dashed #333;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 24px;
+    color: var(--gray);
+    font-size: 13px;
+  }
+  .photo-placeholder .ph-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+  .photo-placeholder .ph-label {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* Price segment visual */
+  .price-bar {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    gap: 12px;
+  }
+  .price-bar-label {
+    width: 160px;
+    font-size: 13px;
+    color: var(--gray-light);
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .price-bar-track {
+    flex: 1;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+  }
+  .price-bar-fill {
+    height: 100%;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 60px 24px;
+    border-top: 1px solid #1a1a1a;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid .stat-card:nth-child(5),
+    .stats-grid .stat-card:nth-child(6) { grid-column: span 1; }
+    .chart-grid { grid-template-columns: 1fr; }
+    .advantages { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .section { padding: 48px 16px; }
+    .hero { padding: 48px 16px; min-height: 80vh; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 15px; }
+    .hero-badge { font-size: 10px; letter-spacing: 3px; padding: 6px 16px; }
+    .section-title { font-size: 28px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .stats-grid .stat-card:nth-child(5),
+    .stats-grid .stat-card:nth-child(6) { grid-column: span 1; }
+    .stat-number { font-size: 32px; }
+    .stat-card { padding: 20px 16px; }
+    .advantages { grid-template-columns: 1fr; gap: 12px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .photo-grid { grid-template-columns: 1fr; gap: 20px; }
+    .chart-container { padding: 20px 12px; }
+    .chart-grid { gap: 16px; }
+    .timeline { padding-left: 32px; }
+    .timeline-item { padding: 16px; }
+    .timeline-month { font-size: 16px; }
+    .table-wrapper { font-size: 13px; }
+    th, td { padding: 10px 12px; }
+    .divider { margin: 40px auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Стратегия 2026</div>
+  <h1>Gifts <span>Industry</span></h1>
+  <p>Стратегия выхода в ТОП-1 на Wildberries и экспансия на Ozon, Яндекс.Маркет и собственный сайт</p>
+  <div class="hero-date">Подготовлено: 16 апреля 2026 &nbsp;|&nbsp; На основе 6 параллельных исследований рынка</div>
+</div>
+
+<!-- ТЕКУЩИЕ ПОКАЗАТЕЛИ -->
+<div class="section">
+  <div class="section-title">Текущие <span>показатели</span></div>
+  <div class="section-subtitle">Gifts Industry на Wildberries — зрелый бренд с сильной базой</div>
+
+  <div class="stats-grid">
+    <div class="stat-card highlight">
+      <span class="stat-number">4.9</span>
+      <div class="stat-label">Средний рейтинг бренда<br>(на уровне лучших конкурентов)</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">723</span>
+      <div class="stat-label">Отзыва суммарно</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">3 872</span>
+      <div class="stat-label">Товара продано</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">94%</span>
+      <div class="stat-label">Выкуп заказов</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">5+</span>
+      <div class="stat-label">Лет на Wildberries</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">-66%</span>
+      <div class="stat-label">Скидка (2 088₽ от 6 400₽)</div>
+    </div>
+  </div>
+
+  <!-- Фото товаров -->
+  <div class="photo-grid">
+    <div class="product-card-photo">
+      <img src="ложка-черный.png" alt="Чёрно-золотая коробка">
+      <div class="product-card-info">
+        <div class="product-card-name">Чёрно-золотой</div>
+        <div class="product-card-stats"><span class="product-star">&#9733;</span> 5.0 &nbsp;&bull;&nbsp; 477 отзывов</div>
+      </div>
+    </div>
+    <div class="product-card-photo">
+      <img src="ложка-белый.png" alt="Бело-золотая коробка">
+      <div class="product-card-info">
+        <div class="product-card-name">Бело-золотой</div>
+        <div class="product-card-stats"><span class="product-star">&#9733;</span> 4.9 &nbsp;&bull;&nbsp; 88 отзывов</div>
+      </div>
+    </div>
+    <div class="product-card-photo">
+      <img src="с-кружкой.png" alt="Чёрно-золотая + кружка">
+      <div class="product-card-info">
+        <div class="product-card-name">С кружкой</div>
+        <div class="product-card-stats"><span class="product-star">&#9733;</span> 4.8 &nbsp;&bull;&nbsp; 118 отзывов</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- КОНКУРЕНТЫ -->
+<div class="section">
+  <div class="section-title">Конкурентный <span>анализ</span></div>
+  <div class="section-subtitle">Wildberries — прямые конкуренты в категории подарочных наборов</div>
+
+  <div class="chart-grid">
+    <div class="chart-container">
+      <div class="chart-title">Отзывы: мы vs конкуренты</div>
+      <canvas id="reviewsChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <div class="chart-title">Рейтинг: мы побеждаем</div>
+      <canvas id="ratingChart"></canvas>
+    </div>
+  </div>
+
+  <div class="table-wrapper" style="margin-top:32px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Бренд</th>
+          <th>Цена</th>
+          <th>Отзывы</th>
+          <th>Рейтинг</th>
+          <th>Состав</th>
+          <th>Слабости</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: rgba(200,168,78,0.05);">
+          <td style="color:var(--gold);font-weight:600;">Gifts Industry</td>
+          <td>2 088₽</td>
+          <td><span class="badge badge-gold">723</span></td>
+          <td><span class="badge badge-green">4.9 (средний)</span></td>
+          <td>Кофе + чай + 2 шоколада + ложка</td>
+          <td>Нет видео, только WB</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">GIFTYBOX</td>
+          <td>2 556₽</td>
+          <td><span class="badge badge-blue">2 019</span></td>
+          <td>4.9★</td>
+          <td>Мёд, варенье, орехи (8 шт)</td>
+          <td style="color:var(--red);">Жидкости текут, коробка мнётся, нет кофе</td>
+        </tr>
+        <tr>
+          <td>Peroni Honey</td>
+          <td>3 000-4 000₽</td>
+          <td>1 000+</td>
+          <td>4.8★</td>
+          <td>Мёд-суфле, чай</td>
+          <td>Дорого, мёд не для всех</td>
+        </tr>
+        <tr>
+          <td>Шок-орех</td>
+          <td>678₽</td>
+          <td>1 226</td>
+          <td>4.9★</td>
+          <td>Орехи в шоколаде</td>
+          <td>Бюджетный сегмент</td>
+        </tr>
+        <tr>
+          <td>Memorique</td>
+          <td>1 403-1 817₽</td>
+          <td>334</td>
+          <td>4.8★</td>
+          <td>Чай, кофе, свечи</td>
+          <td>"Мало за такую цену"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- НАШИ ПРЕИМУЩЕСТВА -->
+<div class="section">
+  <div class="section-title">Наши <span>преимущества</span></div>
+  <div class="section-subtitle">Почему Gifts Industry обойдёт GIFTYBOX</div>
+
+  <div class="advantages">
+    <div class="advantage">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8A84E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <h4>Рейтинг 4.9</h4>
+      <p>На уровне лучших конкурентов. При 723 отзывах — стабильно высокий показатель доверия</p>
+    </div>
+    <div class="advantage">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8A84E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <h4>Цена ниже на 18%</h4>
+      <p>2 088₽ vs 2 556₽ у GIFTYBOX. При сопоставимом качестве — серьёзное преимущество</p>
+    </div>
+    <div class="advantage">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8A84E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/></svg></div>
+      <h4>Сухие продукты</h4>
+      <p>Кофе, чай, шоколад не текут и не бьются. У GIFTYBOX мёд и варенье — проблема при доставке</p>
+    </div>
+    <div class="advantage">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8A84E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h4>Жёсткая коробка</h4>
+      <p>Дизайнерская чёрно-золотая / бело-золотая. Крафтовые коробки конкурентов мнутся</p>
+    </div>
+    <div class="advantage">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8A84E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+      <h4>Кофе в наборе</h4>
+      <p>У GIFTYBOX кофе нет вообще. Comme Il Faut из Бразилии — уникальный элемент</p>
+    </div>
+    <div class="advantage">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8A84E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="5" ry="4.5"/><path d="M12 10.5V22"/><path d="M10 22h4"/></svg></div>
+      <h4>Золотая ложка</h4>
+      <p>Тактильный wow-элемент, которого нет ни у одного конкурента. Запоминается</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ЦЕНОВАЯ КАРТА -->
+<div class="section">
+  <div class="section-title">Ценовая <span>карта</span> рынка</div>
+  <div class="section-subtitle">Где мы сейчас и куда расширяемся</div>
+
+  <div class="chart-container">
+    <div class="chart-title">Позиция в ценовом сегменте</div>
+    <canvas id="priceChart"></canvas>
+  </div>
+
+  <div class="card-grid" style="margin-top:32px;">
+    <div class="card">
+      <div class="card-tag">Пустая ниша</div>
+      <h3>Мини-набор ~1 200₽</h3>
+      <p>Кофе + шоколад + ложка в компактной коробке. "Недорогой, но стильный". Для коллег, знакомых, мелких поводов. Ниша почти пуста в премиум-сегменте.</p>
+    </div>
+    <div class="card" style="border-color: var(--gold-dark);">
+      <div class="card-tag">Текущий продукт</div>
+      <h3>Стандарт ~2 088₽</h3>
+      <p>Чай + кофе + 2 шоколада + золотая ложка. Флагман. 723 отзыва, 5.0 рейтинг. Основной генератор выручки.</p>
+    </div>
+    <div class="card">
+      <div class="card-tag">Пустая ниша</div>
+      <h3>Премиум ~3 000-3 500₽</h3>
+      <p>Specialty кофе + элитный чай + бельгийский шоколад + кружка + ложка. "Впечатляющий подарок". На ДР, годовщину.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ПЛОЩАДКИ -->
+<div class="section">
+  <div class="section-title">Экспансия на <span>площадки</span></div>
+  <div class="section-subtitle">Сейчас — только WB. Цель — присутствие на 3 маркетплейсах + свой сайт</div>
+
+  <div class="chart-container">
+    <div class="chart-title">Порог входа в ТОП-3 по площадкам (отзывы)</div>
+    <canvas id="platformChart"></canvas>
+  </div>
+
+  <div class="card-grid" style="margin-top:32px;">
+    <div class="card">
+      <div class="card-tag">Приоритет #1</div>
+      <h3>Ozon</h3>
+      <p>50 млн покупателей/мес. Аудитория платёжеспособнее. Комиссия 12-18%. GIFTYBOX там с ~300-500 отзывами. Ценовая дыра в сегменте 2 000-2 500₽ — мы попадаем идеально.</p>
+    </div>
+    <div class="card">
+      <div class="card-tag">Приоритет #2</div>
+      <h3>Яндекс.Маркет</h3>
+      <p>Ниша ПУСТАЯ. Нет ни одного сильного бренда в 2 000-3 000₽. Для ТОП-3 достаточно 30-50 отзывов. Синергия с Дзеном и Яндекс-поиском.</p>
+    </div>
+    <div class="card">
+      <div class="card-tag">Месяц 3</div>
+      <h3>Свой сайт</h3>
+      <p>Чёрно-золотой дизайн. Мини + Стандарт + Премиум + Корпоратив. Маржа выше (нет комиссии маркетплейсов). Трафик из соцсетей и Дзена.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ПЛАН -->
+<div class="section">
+  <div class="section-title">План по <span>месяцам</span></div>
+  <div class="section-subtitle">Пошаговый путь от ТОП-5 к ТОП-1</div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-month">Месяц 1 — Фундамент</div>
+      <ul class="timeline-tasks">
+        <li>Обновить карточки: lifestyle-фото с AI-моделями, инфографика, ситуативные слайды</li>
+        <li>Загрузить видео-анбоксинг (15-20 сек) на карточку WB</li>
+        <li>Переписать SEO-заголовки: добавить женские и ситуативные запросы</li>
+        <li>Запустить автокампанию WB: 2 000-3 000₽/день</li>
+        <li>Внедрить вкладыш с QR-кодом в каждый заказ</li>
+        <li>Проверить и расширить склады FBO (3-4 региона)</li>
+        <li>Запустить Telegram-канал, Дзен, Instagram, TikTok</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Месяц 2 — Расширение</div>
+      <ul class="timeline-tasks">
+        <li>Выход на Ozon: регистрация, загрузка, трафареты</li>
+        <li>Выход на Яндекс.Маркет: регистрация, FBS</li>
+        <li>3-5 размещений в Telegram-каналах подборок подарков</li>
+        <li>5-7 бартерных интеграций с нано-блогерами</li>
+        <li>Второе видео: "Собираю ваш заказ" — ASMR</li>
+        <li>Дзен: первые 5-10 статей</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Месяц 3 — Сайт + линейка</div>
+      <ul class="timeline-tasks">
+        <li>Запуск собственного сайта в чёрно-золотом стиле</li>
+        <li>Линейка: Мини (~1 200₽), Стандарт (~2 200₽), Премиум (~3 000-3 500₽)</li>
+        <li>Корпоративный раздел: заказы от 10 шт</li>
+        <li>Трафик на сайт из соцсетей и Дзена</li>
+        <li>Rich-контент (A+) на WB</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Месяц 4-6 — Доминирование</div>
+      <ul class="timeline-tasks">
+        <li>1 000+ отзывов суммарно по всем площадкам</li>
+        <li>3 маркетплейса + свой сайт работают</li>
+        <li>3 ценовых сегмента на всех площадках</li>
+        <li>5 соцсетей генерируют контент и трафик</li>
+        <li>ТОП-3 на WB по основным запросам</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Месяц 6-12 — ТОП-1</div>
+      <ul class="timeline-tasks">
+        <li>2 000+ отзывов — на уровне GIFTYBOX</li>
+        <li>ТОП-1 на WB, ТОП-3 на Ozon</li>
+        <li>Собственный бренд с узнаваемыми лицами</li>
+        <li>Корпоративные заказы через сайт</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- БЮДЖЕТ -->
+<div class="section">
+  <div class="section-title"><span>Бюджет</span> на 3 месяца</div>
+  <div class="section-subtitle">Продакшн контента в бюджет не включён</div>
+
+  <div class="chart-grid">
+    <div class="chart-container">
+      <div class="chart-title">Распределение бюджета</div>
+      <canvas id="budgetChart"></canvas>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center;">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Статья</th><th>Бюджет</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Реклама WB</td><td style="color:var(--gold);">60 000-90 000₽</td></tr>
+            <tr><td>Выход на Ozon + реклама</td><td style="color:var(--gold);">20 000-30 000₽</td></tr>
+            <tr><td>Внешний трафик (Telegram + блогеры)</td><td style="color:var(--gold);">30 000-70 000₽</td></tr>
+            <tr><td>Вкладыши</td><td style="color:var(--gold);">5 000-10 000₽</td></tr>
+            <tr style="background:rgba(200,168,78,0.08);">
+              <td style="font-weight:700;color:var(--white);">Итого</td>
+              <td style="font-weight:700;color:var(--gold);font-size:18px;">115 000-200 000₽</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- СЕЗОННОСТЬ -->
+<div class="section">
+  <div class="section-title">Сезонный <span>календарь</span></div>
+  <div class="section-subtitle">Пики продаж и когда начинать подготовку</div>
+
+  <div class="chart-container">
+    <div class="chart-title">Распределение продаж по сезонам</div>
+    <canvas id="seasonChart"></canvas>
+  </div>
+
+  <div class="table-wrapper" style="margin-top:24px;">
+    <table>
+      <thead>
+        <tr><th>Период</th><th>Событие</th><th>Доля продаж</th><th>Подготовка</th><th>Бюджет рекламы</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>20 ноя — 31 дек</td>
+          <td style="font-weight:600;">Новый год</td>
+          <td><span class="badge badge-gold">30-35%</span></td>
+          <td>1 октября</td>
+          <td>10-20K₽/день</td>
+        </tr>
+        <tr>
+          <td>1-8 марта</td>
+          <td style="font-weight:600;">8 Марта</td>
+          <td><span class="badge badge-gold">12-15%</span></td>
+          <td>1 февраля</td>
+          <td>8-12K₽/день</td>
+        </tr>
+        <tr>
+          <td>14-23 февраля</td>
+          <td>23 Февраля</td>
+          <td><span class="badge badge-blue">8-10%</span></td>
+          <td>20 января</td>
+          <td>8-12K₽/день</td>
+        </tr>
+        <tr>
+          <td>1-14 февраля</td>
+          <td>14 Февраля</td>
+          <td><span class="badge badge-blue">5-7%</span></td>
+          <td>15 января</td>
+          <td>5-8K₽/день</td>
+        </tr>
+        <tr>
+          <td>Июнь-август</td>
+          <td style="color:var(--gray);">Мёртвый сезон</td>
+          <td><span class="badge badge-red">10-12%</span></td>
+          <td>—</td>
+          <td>2-4K₽/день</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ВИЗУАЛЬНАЯ СТРАТЕГИЯ -->
+<div class="section">
+  <div class="section-title">Два лица <span>бренда</span></div>
+  <div class="section-subtitle">Не маскот — а привлекательные модели, которые вызывают эмоции</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Мужчина (30-35)</h3>
+      <p>Стильный, уверенный, лёгкая щетина, тёмные тона. Распаковывает подарок, пьёт кофе, кайфует. Зритель думает: "Хочу получить такой подарок".</p>
+      <div class="photo-placeholder" style="margin-top:16px;aspect-ratio:3/4;">
+        <div class="ph-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="ph-label">AI-модель</div>
+        Сгенерировать в Higgsfield<br>и зафиксировать через reference
+      </div>
+    </div>
+    <div class="card">
+      <h3>Женщина (25-30)</h3>
+      <p>Естественная красота, тёплая улыбка, элегантный стиль. Получает подарок, удивляется, глаза загораются. Зритель думает: "Хочу, чтобы мне так подарили".</p>
+      <div class="photo-placeholder" style="margin-top:16px;aspect-ratio:3/4;">
+        <div class="ph-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="ph-label">AI-модель</div>
+        Сгенерировать в Higgsfield<br>и зафиксировать через reference
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:24px;">
+    <h3>Где используются модели</h3>
+    <p style="margin-top:8px;">Карточки WB / Ozon / ЯМ &nbsp;•&nbsp; Видео для карточек &nbsp;•&nbsp; Reels / TikTok / YouTube Shorts &nbsp;•&nbsp; Telegram / Дзен / Instagram &nbsp;•&nbsp; Rich-контент &nbsp;•&nbsp; Рекламные креативы &nbsp;•&nbsp; Сайт</p>
+    <p style="margin-top:12px;color:var(--gold);font-weight:500;">Один раз создали персонажей → генерируем любой контент без фотосессий → 5 соцсетей + 3 маркетплейса + сайт</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- СОЦСЕТИ -->
+<div class="section">
+  <div class="section-title">Полная <span>инфраструктура</span></div>
+  <div class="section-subtitle">3 маркетплейса + сайт + 5 соцсетей = максимальный охват</div>
+
+  <div class="chart-container">
+    <div class="chart-title">Экосистема присутствия</div>
+    <canvas id="ecosystemChart"></canvas>
+  </div>
+
+  <div class="table-wrapper" style="margin-top:24px;">
+    <table>
+      <thead>
+        <tr><th>Платформа</th><th>Роль</th><th>Контент</th><th>Частота</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--gold);font-weight:600;">Telegram</td>
+          <td>Лояльность, повторные покупки</td>
+          <td>Акции, закулисье, отзывы покупателей</td>
+          <td>2-3 раза/нед</td>
+        </tr>
+        <tr>
+          <td style="color:var(--gold);font-weight:600;">Яндекс.Дзен</td>
+          <td>Охваты + SEO + синергия с ЯМ</td>
+          <td>Статьи "Что подарить", обзоры, истории</td>
+          <td>3-4 раза/нед</td>
+        </tr>
+        <tr>
+          <td style="color:var(--gold);font-weight:600;">Instagram</td>
+          <td>Визуал, женская аудитория</td>
+          <td>Reels с моделями, Stories, фото</td>
+          <td>3-4 раза/нед</td>
+        </tr>
+        <tr>
+          <td style="color:var(--gold);font-weight:600;">TikTok</td>
+          <td>Вирусность, охват</td>
+          <td>Анбоксинг, ASMR, мемы, реакции</td>
+          <td>4-5 раз/нед</td>
+        </tr>
+        <tr>
+          <td style="color:var(--gold);font-weight:600;">YouTube Shorts</td>
+          <td>Дополнительный охват</td>
+          <td>Перезалив Reels/TikTok</td>
+          <td>3-4 раза/нед</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:24px;border-color:var(--gold-dark);">
+    <h3>Принцип: создал один раз → раскидал на 5 платформ</h3>
+    <p style="margin-top:8px;">Один ролик → TikTok + Reels + YouTube Shorts + Дзен. Текстовые посты → Telegram + Дзен. Всё ведётся нейронкой на автомате.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- РЕЗУЛЬТАТЫ -->
+<div class="section">
+  <div class="section-title">Ожидаемые <span>результаты</span></div>
+
+  <div class="chart-container">
+    <div class="chart-title">Прогноз роста отзывов</div>
+    <canvas id="growthChart"></canvas>
+  </div>
+
+  <div class="table-wrapper" style="margin-top:24px;">
+    <table>
+      <thead>
+        <tr><th>Период</th><th>Цель</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Сейчас</td><td>ТОП-5, 723 отзыва, только WB</td></tr>
+        <tr><td>1 месяц</td><td>Видео + визуал → рост CTR, укрепление ТОП-5</td></tr>
+        <tr><td>2 месяца</td><td>Ozon + ЯМ запущены, 800+ отзывов, ТОП-3 на WB</td></tr>
+        <tr><td>3 месяца</td><td>Сайт запущен, 3 ценовых сегмента, 900-1 000 отзывов</td></tr>
+        <tr><td style="color:var(--gold);">6 месяцев</td><td style="color:var(--gold);">1 200-1 500 отзывов, конкуренция за ТОП-1</td></tr>
+        <tr style="background:rgba(200,168,78,0.08);">
+          <td style="color:var(--gold);font-weight:700;">12 месяцев</td>
+          <td style="color:var(--gold);font-weight:700;">2 000+ отзывов, ТОП-1 на WB, 3 маркетплейса + сайт</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="color:var(--gold);font-family:'Playfair Display',serif;font-size:24px;margin-bottom:12px;">Gifts Industry</div>
+  <p>Стратегия продвижения 2026 &nbsp;|&nbsp; Подготовлено на основе 6 параллельных исследований рынка</p>
+  <p style="margin-top:8px;">Подарочные наборы премиум-класса &nbsp;•&nbsp; Бразильский кофе &nbsp;•&nbsp; Цейлонский чай &nbsp;•&nbsp; Крафтовый шоколад</p>
+</div>
+
+<!-- CHARTS JS -->
+<script>
+  Chart.defaults.color = '#888';
+  Chart.defaults.borderColor = '#222';
+  Chart.defaults.font.family = 'Inter';
+
+  // Reviews comparison
+  new Chart(document.getElementById('reviewsChart'), {
+    type: 'bar',
+    data: {
+      labels: ['GIFTYBOX', 'Шок-орех', 'Peroni', 'Gifts Industry', 'Memorique'],
+      datasets: [{
+        data: [2019, 1226, 1000, 723, 334],
+        backgroundColor: ['#333', '#333', '#333', '#C8A84E', '#333'],
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: '#1a1a1a' } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Rating comparison
+  new Chart(document.getElementById('ratingChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Gifts Industry', 'GIFTYBOX', 'Шок-орех', 'Peroni', 'Memorique'],
+      datasets: [{
+        data: [4.9, 4.9, 4.9, 4.8, 4.8],
+        backgroundColor: ['#C8A84E', '#555', '#555', '#555', '#555'],
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { min: 4.7, max: 5.0, grid: { color: '#1a1a1a' }, ticks: { stepSize: 0.1 } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Price positioning
+  new Chart(document.getElementById('priceChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Шок-орех', 'Memorique', 'Мини (план)', 'Gifts Industry', 'GIFTYBOX', 'Премиум (план)', 'Peroni'],
+      datasets: [{
+        data: [678, 1610, 1200, 2088, 2556, 3250, 4000],
+        backgroundColor: ['#333', '#333', 'rgba(200,168,78,0.3)', '#C8A84E', '#555', 'rgba(200,168,78,0.3)', '#333'],
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: '#1a1a1a' }, ticks: { callback: v => v + '₽' } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Platform threshold
+  new Chart(document.getElementById('platformChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Wildberries', 'Ozon', 'Яндекс.Маркет'],
+      datasets: [
+        {
+          label: 'Нужно для ТОП-3',
+          data: [500, 150, 40],
+          backgroundColor: '#C8A84E',
+          borderRadius: 6,
+        },
+        {
+          label: 'У нас сейчас',
+          data: [723, 0, 0],
+          backgroundColor: 'rgba(200,168,78,0.3)',
+          borderRadius: 6,
+        }
+      ]
+    },
+    options: {
+      plugins: { legend: { position: 'bottom', labels: { padding: 20 } } },
+      scales: {
+        y: { grid: { color: '#1a1a1a' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Budget
+  new Chart(document.getElementById('budgetChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Реклама WB', 'Выход на Ozon', 'Внешний трафик', 'Вкладыши'],
+      datasets: [{
+        data: [75, 25, 50, 7.5],
+        backgroundColor: ['#C8A84E', '#E8D48B', '#A07B28', '#6B5220'],
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      cutout: '65%',
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true } }
+      }
+    }
+  });
+
+  // Season chart
+  new Chart(document.getElementById('seasonChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+      datasets: [{
+        label: 'Доля продаж (%)',
+        data: [4, 14, 12, 4, 3, 3, 3, 3, 4, 6, 12, 32],
+        backgroundColor: ctx => {
+          const i = ctx.dataIndex;
+          if (i === 11) return '#C8A84E';
+          if (i === 1 || i === 2 || i === 10) return 'rgba(200,168,78,0.6)';
+          return '#333';
+        },
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { grid: { color: '#1a1a1a' }, ticks: { callback: v => v + '%' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Ecosystem
+  new Chart(document.getElementById('ecosystemChart'), {
+    type: 'radar',
+    data: {
+      labels: ['WB', 'Ozon', 'Яндекс.Маркет', 'Сайт', 'Telegram', 'Дзен', 'Instagram', 'TikTok', 'YouTube'],
+      datasets: [
+        {
+          label: 'Сейчас',
+          data: [80, 0, 0, 0, 0, 0, 0, 0, 0],
+          borderColor: '#555',
+          backgroundColor: 'rgba(85,85,85,0.1)',
+          pointBackgroundColor: '#555',
+        },
+        {
+          label: 'Через 6 месяцев',
+          data: [95, 70, 60, 50, 60, 50, 55, 65, 40],
+          borderColor: '#C8A84E',
+          backgroundColor: 'rgba(200,168,78,0.1)',
+          pointBackgroundColor: '#C8A84E',
+        }
+      ]
+    },
+    options: {
+      scales: {
+        r: {
+          grid: { color: '#1a1a1a' },
+          angleLines: { color: '#222' },
+          ticks: { display: false },
+          suggestedMin: 0,
+          suggestedMax: 100,
+        }
+      },
+      plugins: { legend: { position: 'bottom', labels: { padding: 20 } } }
+    }
+  });
+
+  // Growth projection
+  new Chart(document.getElementById('growthChart'), {
+    type: 'line',
+    data: {
+      labels: ['Сейчас', '1 мес', '2 мес', '3 мес', '4 мес', '6 мес', '9 мес', '12 мес'],
+      datasets: [
+        {
+          label: 'Gifts Industry (прогноз)',
+          data: [723, 780, 850, 950, 1050, 1350, 1700, 2100],
+          borderColor: '#C8A84E',
+          backgroundColor: 'rgba(200,168,78,0.1)',
+          fill: true,
+          tension: 0.4,
+          pointRadius: 5,
+          pointBackgroundColor: '#C8A84E',
+        },
+        {
+          label: 'GIFTYBOX (текущий)',
+          data: [2019, 2050, 2080, 2110, 2140, 2200, 2280, 2350],
+          borderColor: '#555',
+          borderDash: [5, 5],
+          tension: 0.4,
+          pointRadius: 3,
+          pointBackgroundColor: '#555',
+        }
+      ]
+    },
+    options: {
+      plugins: { legend: { position: 'bottom', labels: { padding: 20 } } },
+      scales: {
+        y: { grid: { color: '#1a1a1a' } },
+        x: { grid: { color: '#1a1a1a' } }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
